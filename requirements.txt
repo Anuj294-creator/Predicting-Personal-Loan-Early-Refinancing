@@ -4,4 +4,6 @@ scikit-learn
 matplotlib
 seaborn
 imbalanced-learn
--e.
+dill
+flask
+#-e .

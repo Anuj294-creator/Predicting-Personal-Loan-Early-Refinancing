@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Loan Early Refinancing Predictor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        input, select {
+            padding: 10px;
+            border: 1fr solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus {
+            border-color: #3498db;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+        .btn-submit {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #2980b9;
+        }
+        .result-box {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e8f8f5;
+            border: 1px solid #a3e4d7;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #16a085;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Personal Loan Refinancing Prediction</h2>
+    <form action="/predictdata" method="POST">
+        <div class="form-grid">
+            
+            <div class="form-group">
+    <label for="Experience">Work Experience (Years)</label>
+    <input type="number" id="Experience" name="Experience" min="0" value="{{ form_data.Experience if form_data }}" placeholder="e.g. 5" required>
+</div>
+
+<div class="form-group">
+    <label for="Income">Annual Income ($000s)</label>
+    <input type="number" step="0.1" id="Income" name="Income" min="0" value="{{ form_data.Income if form_data }}" placeholder="e.g. 85.0" required>
+</div>
+
+<div class="form-group">
+    <label for="Family">Family Size</label>
+    <input type="number" id="Family" name="Family" min="1" max="10" value="{{ form_data.Family if form_data }}" placeholder="e.g. 3" required>
+</div>
+
+<div class="form-group">
+    <label for="CCAvg">Monthly CC Spend ($000s)</label>
+    <input type="number" step="0.1" id="CCAvg" name="CCAvg" min="0" value="{{ form_data.CCAvg if form_data }}" placeholder="e.g. 2.5" required>
+</div>
+
+<div class="form-group">
+    <label for="Education">Education Level</label>
+    <select id="Education" name="Education" required>
+        <option value="1" {% if form_data and form_data.Education == '1' %}selected{% endif %}>Undergrad</option>
+        <option value="2" {% if form_data and form_data.Education == '2' %}selected{% endif %}>Graduate</option>
+        <option value="3" {% if form_data and form_data.Education == '3' %}selected{% endif %}>Advanced/Professional</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="Mortgage">Mortgage Value ($000s)</label>
+    <input type="number" step="0.1" id="Mortgage" name="Mortgage" value="{{ form_data.Mortgage if form_data }}" placeholder="e.g. 0" required>
+</div>
+
+            <div class="form-group">
+                <label for="Securities_Account">Securities Account</label>
+                <select id="Securities_Account" name="Securities_Account" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="CD_Account">Certificate of Deposit (CD) Account</label>
+                <select id="CD_Account" name="CD_Account" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Online">Uses Internet Banking</label>
+                <select id="Online" name="Online" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="CreditCard">Has Credit Card</label>
+                <select id="CreditCard" name="CreditCard" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="full-width">
+                <button type="submit" class="btn-submit">Predict Refinancing Status</button>
+            </div>
+        </div>
+    </form>
+
+    {% if results is defined %}
+    <div class="result-box">
+        Prediction Result: {{ results }}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
