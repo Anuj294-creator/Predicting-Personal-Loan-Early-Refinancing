@@ -27,19 +27,20 @@ A full-stack Machine Learning application built with Flask and Python that predi
 
 
 
-
+### Project Structure 
 | Feature Name | Type | Description |
 | :--- | :--- | :--- |
-| **Work Experience** | Integer | Years of professional experience ($\ge 0$) |
-| **Annual Income** | Float | Annual income in thousands ($\$000s$) |
+| **Work Experience** | Integer | Years of professional experience (>= 0) |
+| **Annual Income** | Float | Annual income in thousands ($000s) |
 | **Family Size** | Integer | Number of family members (1 to 10) |
-| **Monthly CC Spend** | Float | Average monthly credit card spending ($\$000s$) |
+| **Monthly CC Spend** | Float | Average monthly credit card spending ($000s) |
 | **Education Level** | Categorical | 1: Undergrad, 2: Graduate, 3: Advanced/Professional |
-| **Mortgage Value** | Float | Value of house mortgage ($\$000s$) |
+| **Mortgage Value** | Float | Value of house mortgage ($000s) |
 | **Securities Account** | Binary | Does customer have a securities account? (0: No, 1: Yes) |
 | **CD Account** | Binary | Does customer have a Certificate of Deposit? (0: No, 1: Yes) |
 | **Online Banking** | Binary | Does customer use internet banking facilities? (0: No, 1: Yes) |
 | **Credit Card** | Binary | Does customer use a credit card issued by bank? (0: No, 1: Yes) |
+
 
 
 
